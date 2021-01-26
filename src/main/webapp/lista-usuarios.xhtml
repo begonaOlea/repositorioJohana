@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Lista Usuarios</title>
+    </h:head>
+    <h:body>
+        <h:form id="listaDatos">
+            <h:dataTable var="usuario" value="#{gestionUsuariosMB.colleccionUsuaios}"> 
+                <h:column>
+                    <f:facet name ="header">ID</f:facet>                 
+                    #{usuario.idUsuario}
+                </h:column>
+                <h:column>
+                    <f:facet name ="header">email</f:facet>                 
+                    #{usuario.email}
+                </h:column>
+                <h:column>
+                    <f:facet name ="header">Nombre</f:facet>                 
+                    #{usuario.nombre}
+                </h:column>
+                <h:column>
+                <h:commandButton value ="VER DETALLE"
+                                 action="#{gestionUsuariosMB.buscarUsuario(usuario.email)}"></h:commandButton>
+                </h:column>
+                <h:commandButton value ="BORRAR"
+                                 action="#{gestionUsuariosMB.borrarUsuario(usuario.idUsuario)}"></h:commandButton>
+                
+            </h:dataTable>
+            
+            <div style="border:1px solid black; padding: 10px">
+                Introduce email a buscar:
+                <h:inputText value="#{gestionUsuariosMB.emailABuscar}"/>
+                <h:commandButton value="BUSCAR"
+                                 action="#{gestionUsuariosMB.buscarUsuarioPorEmailEntrada()}">
+                </h:commandButton>
+                
+            </div>
+            
+            
+            <h:form id="Actualizardatos">
+        Id: 
+        <h:inputText value="#{gestionUsuariosMB.usuarioEncontrado.idUsuario}" id ="id"/> 
+        <br />
+        Nombre: 
+        <h:inputText value="#{gestionUsuariosMB.usuarioEncontrado.nombre}" id ="nombre" />
+        <br />
+        Email:
+        <h:inputText value="#{gestionUsuariosMB.usuarioEncontrado.email}" id="email" />
+        <br />
+        <h:commandButton value ="EDITAR"
+                         action="#{gestionUsuariosMB.modificarUsuario()}"></h:commandButton>
+        </h:form>
+            
+            
+        </h:form>
+    </h:body>
+</html>
+
