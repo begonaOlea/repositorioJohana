@@ -32,7 +32,9 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Tareas.findByDescripcion", query = "SELECT t FROM Tareas t WHERE t.descripcion = :descripcion"),
     //@NamedQuery(name = "Tareas.findByEstado", query = "SELECT t FROM Tareas t WHERE t.estado = :estado")})
     @NamedQuery(name = "Tareas.findByEstado",
-            query = "SELECT t FROM Tareas t WHERE t.estado = :estado AND t.usuario.idUsuario = :idUsuario")})
+            query = "SELECT t FROM Tareas t WHERE t.estado = :estado AND t.usuario.idUsuario = :idUsuario"),
+    @NamedQuery(name = "Tareas.findByEstadoArchivado",
+            query = "SELECT t FROM Tareas t WHERE t.estado = :estado AND t.usuario.idUsuario = :idUsuario AND NOT t.archivado" )})
 
 public class Tareas implements Serializable {
 
@@ -55,6 +57,11 @@ public class Tareas implements Serializable {
     @Size(min = 1, max = 15)
     @Column(name = "ESTADO")
     private String estado;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ARCHIVADO")
+    private Boolean archivado;
     
     @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO")
     @ManyToOne(optional = false)
@@ -105,6 +112,16 @@ public class Tareas implements Serializable {
         this.usuario = usuario;
     }
 
+    public Boolean getArchivado() {
+        return archivado;
+    }
+
+    public void setArchivado(Boolean archivado) {
+        this.archivado = archivado;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;

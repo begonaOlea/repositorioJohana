@@ -38,34 +38,38 @@ public class GestionTareasManagedBean implements Serializable{
     }
     
     public Collection<Tareas> getColeccionTareasTodo() {
+        System.out.println(".....OBTENIENDO TAREAS HACER ");
         return coleccionTareasTodo;
     }
     
     public Collection<Tareas> getColeccionTareasInProgress() {
+        System.out.println(".....OBTENIENDO TAREAS PROGRESO ");
         return coleccionTareasInProgress;
     }
     
     public Collection<Tareas> getColeccionTareasDone() {
+        System.out.println(".....OBTENIENDO TAREAS DONE ");
         return coleccionTareasDone;
     }
     
     public Tareas getSelectTarea() {
         return selectTarea;
     }
-
     
     public void setSelectTarea(Tareas selectTarea) {
         this.selectTarea = selectTarea;
     }
     
-    public String  cambiarEstadoUp(int id){
+    public String  cambiarEstadoUp(){
          
         FacesContext ctx = FacesContext.getCurrentInstance();
     
           try {
-            tareasService.CambiarEstadoUp(id);
+            this.idTarea = this.selectTarea.getIdTarea();
+              this.tareasService.CambiarEstadoUp(idTarea);
             FacesMessage msg = new FacesMessage("Cambiaste el estado de la tarea ");
             ctx.addMessage(null, msg);
+            iniciar();
             return "tareas";
         } catch (TareasException ex) {
             FacesMessage msg = new FacesMessage("No se ha cambiado el estado" + ex.getMessage());
@@ -74,14 +78,16 @@ public class GestionTareasManagedBean implements Serializable{
         return null;
      }
      
-    public String  cambiarEstadoDown(int id){
+    public String  cambiarEstadoDown(){
         
          FacesContext ctx = FacesContext.getCurrentInstance();
          
           try {
-            tareasService.CambiarEstadoDown(id);
+              this.idTarea = this.selectTarea.getIdTarea();
+             this.tareasService.CambiarEstadoDown(idTarea);
             FacesMessage msg = new FacesMessage("Cambiaste el estado de la tarea ");
             ctx.addMessage(null, msg);
+            iniciar();
             return "tareas";
         } catch (TareasException ex) {
             FacesMessage msg = new FacesMessage("No se ha cambiado el estado" + ex.getMessage());

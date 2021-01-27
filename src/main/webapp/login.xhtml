@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Login</title>
+    </h:head>
+    <h:body>
+       
+
+                FECHA ACTUAL: 
+                <h:outputLabel value="#{loginMB.fecha}">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:outputLabel>
+                
+                <h2> LOGIN </h2>   
+                <h:form id="formularioLogin">
+                    <h:panelGrid columns="3">
+                    Email: 
+                    <h:inputText value="#{loginMB.email}" required = "true" requiredMessage="Obligatorio" id="nombre"/>
+                    <h:message for="nombre"></h:message>
+                    <!-- action de commnand button puede ser el nombre del metodo 
+                    del managedbean o una página a la que queramos ir -->
+                    <br />
+                    Contraseña:
+                    <h:inputSecret value="#{loginMB.clave}"  required = "true" id="psw"/>
+                    <h:message for ="psw" ></h:message>
+                    <h:commandButton action ="#{loginMB.login()}" value="Iniciar Sesion"/>
+                    <h:commandButton value="Cancelar" 
+                                     action="index" 
+                                     immediate ="true"/>
+                    </h:panelGrid>
+                </h:form>
+        
+    </h:body>
+</html>
+

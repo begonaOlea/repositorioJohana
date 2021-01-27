@@ -17,7 +17,9 @@ public class TareasService implements TareasServiceLocal {
 
     @Override
     public Collection<Tareas> getTareas(Integer idUsuario, String estado) {
-        Query query = em.createNamedQuery("Tareas.findByEstado");
+        //Query query = em.createNamedQuery("Tareas.findByEstado");
+        Query query = em.createNamedQuery("Tareas.findByEstadoArchivado");
+        
         query.setParameter("estado", estado);
         query.setParameter("idUsuario", idUsuario);
        
@@ -35,19 +37,25 @@ public class TareasService implements TareasServiceLocal {
     @Override
     public void CambiarEstadoUp(Integer idTarea) throws TareasException{
         Tareas t = getTarea(idTarea);
-        if (t.getDescripcion().equals("TO DO"))
-        t.setEstado("IN PROGRESS");
-        if (t.getDescripcion().equals("IN PROGRESS"))
-        t.setEstado("DONE"); 
+        String estado = t.getEstado();
+        if (estado.equals("TO DO")){
+            t.setEstado("IN PROGRESS");
+        }else if  (estado.equals("IN PROGRESS")){
+            t.setEstado("DONE"); 
+        }else if  (estado.equals("DONE")){
+            t.setArchivado(Boolean.TRUE);
+        }
     }
 
     @Override
     public void CambiarEstadoDown(Integer idTarea) throws TareasException{
         Tareas t = getTarea(idTarea);
-        if (t.getDescripcion().equals("DONE"))
-        t.setEstado("IN PROGRESS");
-        if (t.getDescripcion().equals("IN PROGRESS"))
-        t.setEstado("TO DO"); 
+        String estado = t.getEstado();
+       if (estado.equals("DONE")){
+            t.setEstado("IN PROGRESS");
+        } else if (estado.equals("IN PROGRESS")){
+            t.setEstado("TO DO"); 
+        }
     }
 
     

@@ -18,5 +18,21 @@
             <from-outcome>listaTareas</from-outcome>
             <to-view-id>/lista-tareas.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
+    
+    <application>
+        <!--message-bundle>com.tareas</message-bundle-->
+        <resource-bundle>
+            <base-name>com.web.recursos.textos</base-name>
+            <var>textos</var>
+        </resource-bundle>
+        <locale-config>
+            <default-locale>es</default-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>
+    </application>
 </faces-config>

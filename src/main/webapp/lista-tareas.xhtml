@@ -32,20 +32,20 @@
                     <p:dataTable id="hacer" var="tarea" value="#{gestionTareasMB.coleccionTareasTodo}"
                                  selectionMode="single" selection="#{gestionTareasMB.selectTarea}" rowKey="#{tarea.idTarea}">
                         <f:facet name="header">
-                            Hacer
+                            HACER
                         </f:facet>
-                        <p:column headerText="ID">
-                            <h:outputText value="#{tarea.idTarea}" />
+                        <p:column headerText="ID" >
+                            <h:outputText  value="#{tarea.idTarea}"  />
                         </p:column>
                         <p:column headerText="Descripcion">
                             <h:outputText value="#{tarea.descripcion}" />
                         </p:column>
                         <f:facet name="footer">
-                            <h:commandButton value="X" action="#{gestionTareasMB.cambiarEstadoUp(tarea.idTarea)}" >
-                                <f:ajax event="click" render="formHacer:hacer " execute="@form"></f:ajax>
+                            <h:commandButton value="X" action="#{gestionTareasMB.cambiarEstadoDown()}" >
+                                <f:ajax event="click" render="formHacer:hacer" execute="@form"></f:ajax>
                             </h:commandButton>
-                            <h:commandButton value="→" action="#{gestionTareasMB.cambiarEstadoDown(tarea.idTarea)}">
-                                <f:ajax event="click" render="formHacer:hacer formProgress:progreso" execute="@form"></f:ajax>
+                            <h:commandButton value="→" action="#{gestionTareasMB.cambiarEstadoUp()}">
+                                <f:ajax event="click" render="formHacer:hacer formProgress:hacer" execute="@form"></f:ajax>
                             </h:commandButton>
                         </f:facet>
                     </p:dataTable>
@@ -56,7 +56,7 @@
                     <p:dataTable id="hacer" var="tarea" value="#{gestionTareasMB.coleccionTareasInProgress}"
                                  selectionMode="single" selection="#{gestionTareasMB.selectTarea}" rowKey="#{tarea.idTarea}">
                         <f:facet name="header">
-                            Hacer
+                           EN PROGRESO 
                         </f:facet>
                         <p:column headerText="ID">
                             <h:outputText value="#{tarea.idTarea}" />
@@ -65,11 +65,11 @@
                             <h:outputText value="#{tarea.descripcion}" />
                         </p:column>
                         <f:facet name="footer">
-                            <h:commandButton value="X" action="#{gestionTareasMB.cambiarEstadoUp(tarea.idTarea)}" >
-                                <f:ajax event="click" render="formHacer:hacer " execute="@form"></f:ajax>
+                            <h:commandButton value="←" action="#{gestionTareasMB.cambiarEstadoDown()}" >
+                                <f:ajax event="click" render="formHacer:hacer formProgress:hacer" execute="@form"></f:ajax>
                             </h:commandButton>
-                            <h:commandButton value="→" action="#{gestionTareasMB.cambiarEstadoDown(tarea.idTarea)}">
-                                <f:ajax event="click" render="formHacer:hacer formProgress:progreso" execute="@form"></f:ajax>
+                            <h:commandButton value="→" action="#{gestionTareasMB.cambiarEstadoUp()}">
+                                <f:ajax event="click" render="formProgress:hacer formHecho:hacer" execute="@form"></f:ajax>
                             </h:commandButton>
                         </f:facet>
                     </p:dataTable>
@@ -82,7 +82,7 @@
                     <p:dataTable id="hacer" var="tarea" value="#{gestionTareasMB.coleccionTareasDone}"
                                  selectionMode="single" selection="#{gestionTareasMB.selectTarea}" rowKey="#{tarea.idTarea}">
                         <f:facet name="header">
-                            Hacer
+                            HECHO
                         </f:facet>
                         <p:column headerText="ID">
                             <h:outputText value="#{tarea.idTarea}" />
@@ -91,11 +91,11 @@
                             <h:outputText value="#{tarea.descripcion}" />
                         </p:column>
                         <f:facet name="footer">
-                            <h:commandButton value="X" action="#{gestionTareasMB.cambiarEstadoUp(tarea.idTarea)}" >
-                                <f:ajax event="click" render="formHacer:hacer " execute="@form"></f:ajax>
+                            <h:commandButton value="←" action="#{gestionTareasMB.cambiarEstadoDown()}" >
+                                <f:ajax event="click" render="formProgress:hacer formHecho:hacer" execute="@form"></f:ajax>
                             </h:commandButton>
-                            <h:commandButton value="→" action="#{gestionTareasMB.cambiarEstadoDown(tarea.idTarea)}">
-                                <f:ajax event="click" render="formHacer:hacer formProgress:progreso" execute="@form"></f:ajax>
+                            <h:commandButton value="X" action="#{gestionTareasMB.cambiarEstadoUp()}">
+                                <f:ajax event="click" render="formHecho:hacer" execute="@form"></f:ajax>
                             </h:commandButton>
                         </f:facet>
                     </p:dataTable>
@@ -104,23 +104,24 @@
             </div>         
         </div> 
 
-        <h1>LISTA DE TAREAS Usuario1 </h1>
-        <h3>TO DO</h3>
-        <h:dataTable var="tareaToDo" value="#{gestionTareasMB.coleccionTareasTodo}">
-            <h:column>
-                <f:facet name="header">ID</f:facet>
-                    #{tareaToDo.idTarea}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Descripcion</f:facet>
-                    #{tareaToDo.descripcion}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Usuario</f:facet>
-                    #{tareaToDo.usuario.nombre}
-            </h:column>
-        </h:dataTable>
-
+        <ui:remove>
+            <h1>LISTA DE TAREAS Usuario1 </h1>
+            <h3>TO DO</h3>
+            <h:dataTable var="tareaToDo" value="#{gestionTareasMB.coleccionTareasTodo}">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                        #{tareaToDo.idTarea}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Descripcion</f:facet>
+                        #{tareaToDo.descripcion}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Usuario</f:facet>
+                        #{tareaToDo.usuario.nombre}
+                </h:column>
+            </h:dataTable>
+        </ui:remove>
 
     </h:body>
 </html>
