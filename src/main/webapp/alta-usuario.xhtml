@@ -7,40 +7,25 @@
         <title>Alta Usuarios</title>
     </h:head>
     <h:body>
-        <h:form id="alta-Usuario">
-            <h:dataTable var="usuario" value="#{gestionUsuariosMB.colleccionUsuaios}"> 
-                <h:column>
-                    <f:facet name ="header">ID</f:facet>                 
-                    #{usuario.idUsuario}
-                </h:column>
-                <h:column>
-                    <f:facet name ="header">email</f:facet>                 
-                    #{usuario.email}
-                </h:column>
-                <h:column>
-                    <f:facet name ="header">Nombre</f:facet>                 
-                    #{usuario.nombre}
-                </h:column>
-                <h:column>
-                <h:commandButton value ="VER DETALLE"
-                                 action="#{gestionUsuariosMB.buscarUsuario(usuario.email)}"></h:commandButton>
-                </h:column>
-                <h:commandButton value ="BORRAR"
-                                 action="#{gestionUsuariosMB.borrarUsuario(usuario.idUsuario)}"></h:commandButton>
-                
-            </h:dataTable>
-            
-            <div style="border:1px solid black; padding: 10px">
-                Introduce email a buscar:
-                <h:inputText value="#{gestionUsuariosMB.emailABuscar}"/>
-                <h:commandButton value="BUSCAR"
-                                 action="#{gestionUsuariosMB.buscarUsuarioPorEmailEntrada()}">
-                </h:commandButton>
-                
-            </div>
-            
-            
+        <h:form id="formAltaUsuario">
+            <h:panelGrid columns="3">
+                Email:
+                <h:inputText value="#{gestionUsuariosMB.nuevoUsuario.email}" >
+                    <f:ajax event="change" execute="@this" render="mensajeEmailExiste"/>
+                </h:inputText>
+                <h:message for ="email" ></h:message>  
+                <br />
+                Nombre: 
+                <h:inputText value="#{gestionUsuariosMB.nuevoUsuario.nombre}" required = "true" id="nombre"/>            
+                <h:message for ="nombre" ></h:message>
+                Contraseña: 
+                <h:inputText value="#{gestionUsuariosMB.nuevoUsuario.password}" required = "true" id="psw" />
+                <h:message for ="psw" ></h:message>            
+                <br />
+                <h:commandButton value="Registrar" action="#{gestionUsuariosMB.crearUsuario()}" />
+            </h:panelGrid>
         </h:form>
+
     </h:body>
 </html>
 

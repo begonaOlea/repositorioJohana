@@ -33,6 +33,7 @@ public class GestionUsuarios implements Serializable{
      @EJB private UsuarioServiceLocal usuarioService;
      private Usuarios usuarioEncontrado;
      private String emailABuscar;
+     private Usuarios nuevoUsuario = new Usuarios();
      
     public GestionUsuarios() {
         System.out.println("-... INSTANCIANDO GESTIÓN DE USUARIOS ");
@@ -50,6 +51,14 @@ public class GestionUsuarios implements Serializable{
 
     public void setEmailABuscar(String emailABuscar) {
         this.emailABuscar = emailABuscar;
+    }
+
+    public Usuarios getNuevoUsuario() {
+        return nuevoUsuario;
+    }
+
+    public void setNuevoUsuario(Usuarios nuevoUsuario) {
+        this.nuevoUsuario = nuevoUsuario;
     }
      
      
@@ -111,14 +120,19 @@ public class GestionUsuarios implements Serializable{
       
    }
    
-   public String crearUsuario(Usuarios usr){
+   public String crearUsuario(){
        try {
-           Usuarios nuevo = new Usuarios();
+           usuarioService.alta(nuevoUsuario);
+           FacesContext ctx = FacesContext.getCurrentInstance();
+           FacesMessage mns = new FacesMessage("Usuario dado de alta");
+           ctx.addMessage(null, mns);
+           return "login";
+           
        } catch (Exception e) {
            FacesContext fc = FacesContext.getCurrentInstance();
             fc.addMessage(null, new FacesMessage(e.getMessage()));
             return null;
        }
-       return null;
+       
    }
 }

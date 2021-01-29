@@ -3,6 +3,7 @@ package com.servicios;
 
 import com.Excepciones.TareasException;
 import com.modelo.Tareas;
+import com.modelo.Usuarios;
 import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -56,6 +57,16 @@ public class TareasService implements TareasServiceLocal {
         } else if (estado.equals("IN PROGRESS")){
             t.setEstado("TO DO"); 
         }
+    }
+
+    @Override
+    public void altaTarea(Tareas tarea) throws TareasException {
+//        Tareas nueva = new Tareas();
+//        nueva.setDescripcion(tarea.getDescripcion());
+//        nueva.setEstado(tarea.getEstado());
+//        nueva.setArchivado(tarea.getArchivado());
+//        nueva.setUsuario(usuarioCompl);
+       em.persist(tarea);
     }
 
     

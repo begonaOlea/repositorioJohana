@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <title>Agregar- Tarea</title>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h:form id="alta-tarea">
+                <h:panelGrid columns="3">
+                Descripcion:
+                <h:inputText value="#{gestionTareasMB.tareaNueva.descripcion}" ></h:inputText>
+                <h:message for ="descripcion" ></h:message>  
+                <br />
+                <label for="estado">Estado</label>
+                    <h:selectOneMenu value = "#{gestionTareasMB.tareaNueva.estado}" id="estado"> 
+                        <f:selectItem itemValue = "TO DO" itemLabel = "TO DO" /> 
+                        <f:selectItem itemValue = "IN PROGRESS" itemLabel = "IN PROGRESS" /> 
+                        <f:selectItem itemValue = "DONE" itemLabel = "DONE" /> 
+                    </h:selectOneMenu> 
+                <h:message for ="estado" ></h:message>  
+                <h:commandButton value="NuevaTarea" action="#{gestionTareasMB.addTarea()}" />
+            </h:panelGrid>
+            </h:form>
+        </div>
+
+    </h:body>
+</html>
+

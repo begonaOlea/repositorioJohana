@@ -104,6 +104,15 @@
             </div>         
         </div> 
 
+        <div>
+            <h:panelGroup rendered="#{loginMB.usuarioCompleto != null}">
+                    <h:form id="addTarea" >
+                        <h:commandButton value="Agregar Tarea" action ="alta-tarea"></h:commandButton>
+                    </h:form>
+                </h:panelGroup>
+                <br />
+        </div>
+        
         <ui:remove>
             <h1>LISTA DE TAREAS Usuario1 </h1>
             <h3>TO DO</h3>

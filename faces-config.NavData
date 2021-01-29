@@ -2,12 +2,13 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
+        <Node id="alta-tarea.xhtml" x="400" y="150" zoom="true"/>
         <Node id="lista-tareas.xhtml" x="524" y="76" zoom="true"/>
         <Node id="login.xhtml" x="150" y="300" zoom="true"/>
         <Node id="detalleUsuario.xhtml" x="527" y="274" zoom="true"/>
-        <Node id="alta-usuario.xhtml" x="30" y="196" zoom="true"/>
         <Node id="index.xhtml" x="332" y="230" zoom="false"/>
         <Node id="lista-usuarios.xhtml" x="150" y="150" zoom="false"/>
+        <Node id="alta-usuario.xhtml" x="63" y="203" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>
